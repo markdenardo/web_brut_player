@@ -1,5 +1,4 @@
 import React from 'react';
-import logo from './logo.svg';
 import  Player  from './Player.js'
 import './App.css';
 
