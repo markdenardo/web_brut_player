@@ -1,5 +1,6 @@
 import React from 'react';
 import  Player  from './Player.js'
+import OtherPlayer from './OtherPlayer'
 import './App.css';
 
 function App() {
@@ -8,6 +9,7 @@ function App() {
       <header className="App-header">
         Web Brut Player
       < Player />
+
       </header>
     </div>
   );

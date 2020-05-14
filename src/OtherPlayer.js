@@ -1,32 +1,18 @@
 import React from 'react'
 import ReactPlayer from 'react-player'
-import Movie from './Movie'
 
-class Player extends React.Component {
-  constructor(){
-    super()
+
+class OtherPlayer extends React.Component {
+  constructor(props) {
+    super(props);
     this.state = {
       error: null,
       isLoaded: false,
       movies: []
     };
-  };
-
-  getRandomInt(min, max) {
-    min= Math.ceil(min);
-    max = Math.floor(max);
-    return Math.floor(Math.random() * (max - min + 1)) + min;
   }
 
-  getCurrentMovie = () => {
-    if (this.state.movies.length > 0){
-      let randomNumber = this.getRandomInt(0, this.state.movies.length);
-      return this.state.movies[randomNumber];
-    }
-    return "";
-  }
-
-  componentDidMount = () => {
+  componentDidMount() {
     fetch("https://web-brut-api.herokuapp.com/movies")
       .then(res => res.json())
       .then(
@@ -48,23 +34,24 @@ class Player extends React.Component {
       )
   }
 
-  render(){
+  render() {
     const { error, isLoaded, movies } = this.state;
     if (error) {
       return <div>Error: {error.message}</div>;
-    } else if (!isLoaded && movies.length == 0) {
+    } else if (!isLoaded) {
       return <div>Loading...</div>;
     } else {
       return (
-        <div className="Player">
-        (click to start/stop; arrows to advance/rewind)
-        <ReactPlayer url={this.getCurrentMovie().url} />
-        <Movie name={this.getCurrentMovie().name} year={this.getCurrentMovie().year} />
-        (refresh to load new video 🌊)
-        </div>
+        <ul>
+          {movies.map(movie => (
+            <li key={movie.name}>
+              {movie.id} {movie.name} {movie.dir} {movie.year}
+            </li>
+          ))}
+        </ul>
       );
     }
   }
 }
 
-export default Player;
+export default OtherPlayer;

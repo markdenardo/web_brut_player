@@ -13,3 +13,10 @@ Thanks to:
 ReactPlayer GitHub: https://github.com/CookPete/react-player
 
 WIP; next feature to this project will be a form which will allow users to add to this array of videos (POST).
+
+Goals:
+
+React event listener
+Submit form
+POST request to rails Back End
+Player UI improvements (play/pause, next video, full screen/minimize)
