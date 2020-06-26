@@ -1,6 +1,5 @@
 import React from 'react'
 import ReactPlayer from 'react-player'
-import Movie from './Movie'
 
 class Player extends React.Component {
   constructor(){
@@ -8,7 +7,9 @@ class Player extends React.Component {
     this.state = {
       error: null,
       isLoaded: false,
-      movies: []
+      movies: [],
+      movie:{}
+     
     };
   };
 
@@ -22,6 +23,7 @@ class Player extends React.Component {
     if (this.state.movies.length > 0){
       let randomNumber = this.getRandomInt(0, this.state.movies.length);
       return this.state.movies[randomNumber];
+      
     }
     return "";
   }
@@ -57,9 +59,8 @@ class Player extends React.Component {
     } else {
       return (
         <div className="Player">
-        (click to start/stop; arrows to advance/rewind)
-        <ReactPlayer url={this.getCurrentMovie().url} />
-        <Movie name={this.getCurrentMovie().name} year={this.getCurrentMovie().year} />
+          (click to start/stop; arrows to advance/rewind)
+          <ReactPlayer url={this.getCurrentMovie().url}/>
         (refresh to load new video 🌊)
         </div>
       );
